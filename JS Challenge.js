@@ -1,15 +1,15 @@
 let choices = ["rock", "paper", "scissors"];
 document.getElementById("rock").addEventListener("click", function() {
-  		func("rock");
+  		play("rock");
 	});
 document.getElementById("paper").addEventListener("click", function() {
-  		func("paper");
+  		play("paper");
 	});
 document.getElementById("scissors").addEventListener("click", function() {
-  		func("scissors");
+  		play("scissors");
 	});
 
-function func(choice) {
+function play(choice) {
 	let text = document.createTextNode(`Your choice: ${choice}`);
 	let cont = document.getElementsByClassName("container")[0];
 	let row = document.createElement("row");
@@ -23,8 +23,7 @@ function func(choice) {
 	let text2 = document.createTextNode(`Computer choice: ${choices[index]}`);
 	par2.append(text2);
 	row2.append(par2);
-	cont.append(row2);
-	
+	cont.append(row2);	
 	switch (choices[index]==choice) {
 		case true:
 			let row11 = document.createElement("row");
@@ -53,7 +52,7 @@ function func(choice) {
 				cont.append(row22);
 				break;	
 			}
-}
+	}
 }
 
 
