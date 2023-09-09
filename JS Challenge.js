@@ -10,46 +10,20 @@ document.getElementById("scissors").addEventListener("click", function() {
 	});
 
 function play(choice) {
-	let text = document.createTextNode(`Your choice: ${choice}`);
-	let cont = document.getElementsByClassName("container")[0];
-	let row = document.createElement("row");
-	let par = document.createElement("h3");
-	par.append(text);
-	row.append(par);
-	cont.append(row);
+	document.getElementById("line1").innerHTML = `Your choice: ${choice}`
 	let index = Math.floor(Math.random() * choices.length);
-	let row2 = document.createElement("row");
-	let par2 = document.createElement("h3");
-	let text2 = document.createTextNode(`Computer choice: ${choices[index]}`);
-	par2.append(text2);
-	row2.append(par2);
-	cont.append(row2);	
+	document.getElementById("line2").innerHTML = `Computer choice: ${choices[index]}`
 	switch (choices[index]==choice) {
 		case true:
-			let row11 = document.createElement("row");
-			let par11 = document.createElement("h3");
-			let text11 = document.createTextNode("It's a draw");
-			par11.append(text11);
-			row11.append(par11);
-			cont.append(row11);
+			document.getElementById("line3").innerHTML = "It's a draw"
 			break;
 		case false:
-			if ((choices[index]=="rock" && choice=="paper") || (choices[index]=="paper" && choice=="scissors")) {
-				let row22 = document.createElement("row");
-				let par22 = document.createElement("h3");
-				let text22 = document.createTextNode("You won");
-				par22.append(text22);
-				row22.append(par22);
-				cont.append(row22);
+			if ((choices[index]=="rock" && choice=="paper") || (choices[index]=="paper" && choice=="scissors") || (choices[index]=="scissors" && choice=="rock")) {
+				document.getElementById("line3").innerHTML = "You won"
 				break;	
 				
 			} else {
-				let row22 = document.createElement("row");
-				let par22 = document.createElement("h3");
-				let text22 = document.createTextNode("Computer won");
-				par22.append(text22);
-				row22.append(par22);
-				cont.append(row22);
+				document.getElementById("line3").innerHTML = "Computer won"
 				break;	
 			}
 	}
