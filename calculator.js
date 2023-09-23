@@ -51,6 +51,9 @@ document.getElementById("bmult").addEventListener("click", function () {
 document.getElementById("bdivide").addEventListener("click", function () {
   addReplaceSign("/");
 });
+document.getElementById("bequals").addEventListener("click", function () {
+  equals();
+});
 function addReplaceSign(sign) {
   if (document.getElementsByTagName("h2")[0].innerHTML == 0) {
     document.getElementsByTagName("h2")[0].innerHTML = 0;
@@ -80,5 +83,33 @@ function press(num) {
     document.getElementsByTagName("h2")[0].innerHTML = num;
   } else {
     document.getElementsByTagName("h2")[0].innerHTML += num;
+  }
+}
+function equals() {
+  if (document.getElementsByTagName("h2")[0].innerHTML == "0") {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+  } else if (
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 1
+    ] == "-" ||
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 1
+    ] == "+" ||
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 1
+    ] == "*" ||
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 1
+    ] == "/"
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = document
+      .getElementsByTagName("h2")[0]
+      .innerHTML.slice(
+        0,
+        document.getElementsByTagName("h2")[0].innerHTML.length - 1
+      );
+    document.getElementsByTagName("h2")[0].innerHTML += "=";
+  } else {
+    document.getElementsByTagName("h2")[0].innerHTML += "=";
   }
 }
