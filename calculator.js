@@ -111,5 +111,26 @@ function equals() {
     document.getElementsByTagName("h2")[0].innerHTML += "=";
   } else {
     document.getElementsByTagName("h2")[0].innerHTML += "=";
+    var equals_index = document
+      .getElementsByTagName("h2")[0]
+      .innerHTML.indexOf("=");
+    var original = document
+      .getElementsByTagName("h2")[0]
+      .innerHTML.slice(0, equals_index);
+    var result = 0;
+    for (i = 0; i < original.length; i++) {
+      if (original[i] == "*") {
+        var left_side = original.slice(0, i + 2);
+        var right_side = original.slice(i + 2, original.length);
+        left_side.pop();
+        left_side.pop();
+        left_side.pop();
+        var num1 = Number(original[i - 1]);
+        var num2 = Number(original[i + 1]);
+        var new_num = num1 * num2;
+        left_side.push(new_num);
+        var modified = left_side.concat(right_side);
+      }
+    }
   }
 }
