@@ -38,6 +38,43 @@ document.getElementById("bdot").addEventListener("click", function () {
 document.getElementById("bc").addEventListener("click", function () {
   document.getElementsByTagName("h2")[0].innerHTML = 0;
 });
+
+document.getElementById("bplus").addEventListener("click", function () {
+  addReplaceSign("+");
+});
+document.getElementById("bminus").addEventListener("click", function () {
+  addReplaceSign("-");
+});
+document.getElementById("bmult").addEventListener("click", function () {
+  addReplaceSign("*");
+});
+document.getElementById("bdivide").addEventListener("click", function () {
+  addReplaceSign("/");
+});
+function addReplaceSign(sign) {
+  if (document.getElementsByTagName("h2")[0].innerHTML == 0) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+  } else if (
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 1
+    ] == "-" ||
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 1
+    ] == "+" ||
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 1
+    ] == "*" ||
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 1
+    ] == "/"
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 1
+    ] = sign;
+  } else {
+    document.getElementsByTagName("h2")[0].innerHTML += sign;
+  }
+}
 function press(num) {
   if (document.getElementsByTagName("h2")[0].innerHTML == "0") {
     document.getElementsByTagName("h2")[0].innerHTML = num;
