@@ -55,8 +55,12 @@ document.getElementById("bequals").addEventListener("click", function () {
   equals();
 });
 function addReplaceSign(sign) {
-  if (document.getElementsByTagName("h2")[0].innerHTML == 0) {
+  if (document.getElementsByTagName("h2")[0].innerHTML == 0 && sign == " - ") {
+    document.getElementsByTagName("h2")[0].innerHTML = "-";
+  } else if (document.getElementsByTagName("h2")[0].innerHTML == 0) {
     document.getElementsByTagName("h2")[0].innerHTML = 0;
+  } else if (document.getElementsByTagName("h2")[0].innerHTML == "-") {
+    document.getElementsByTagName("h2")[0].innerHTML = "-";
   } else if (
     document.getElementsByTagName("h2")[0].innerHTML[
       document.getElementsByTagName("h2")[0].innerHTML.length - 1
@@ -79,14 +83,22 @@ function addReplaceSign(sign) {
   }
 }
 function press(num) {
-  if (document.getElementsByTagName("h2")[0].innerHTML == "0") {
+  if (document.getElementsByTagName("h2")[0].innerHTML == "0" && num != ".") {
     document.getElementsByTagName("h2")[0].innerHTML = num;
+  } else if (
+    document.getElementsByTagName("h2")[0].innerHTML == "0" &&
+    num == "."
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = "0.";
   } else {
     document.getElementsByTagName("h2")[0].innerHTML += num;
   }
 }
 function equals() {
-  if (document.getElementsByTagName("h2")[0].innerHTML == "0") {
+  if (
+    document.getElementsByTagName("h2")[0].innerHTML == "0" ||
+    document.getElementsByTagName("h2")[0].innerHTML.includes("=")
+  ) {
     document.getElementsByTagName("h2")[0].innerHTML = 0;
   } else if (
     document.getElementsByTagName("h2")[0].innerHTML[
@@ -160,7 +172,21 @@ function equals() {
         arr = left_side.concat(right_side);
       }
     }
-    let result = arr[0];
+    for (i = 1; i < arr.length - 1; i++) {
+      if (arr[i] == "-") {
+        var left_side = arr.slice(0, i + 2);
+        var right_side = arr.slice(i + 2, arr.length);
+        left_side.pop();
+        left_side.pop();
+        left_side.pop();
+        var num1 = Number(arr[i - 1]);
+        var num2 = Number(arr[i + 1]);
+        var new_num = num1 - num2;
+        left_side.push(new_num);
+        arr = left_side.concat(right_side);
+      }
+    }
+    let result = arr[0].toFixed(6);
     document.getElementsByTagName("h2")[0].innerHTML += ` ${result}`;
   }
 }
