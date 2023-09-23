@@ -188,86 +188,52 @@ function equals() {
     // Otherwise append a space and an equals sign to the screen
   } else {
     document.getElementsByTagName("h2")[0].innerHTML += " =";
-    // Index of the equals sign
-    var equals_index = document
-      .getElementsByTagName("h2")[0]
-      .innerHTML.indexOf("=");
-    // A slice of the string without the equals sign
-    var original_string = document
-      .getElementsByTagName("h2")[0]
-      .innerHTML.slice(0, equals_index);
-    // Split the slice using a blank space delimitor
-    var arr = original_string.split(" ");
-    // Loop through the array to find multiply operators
-    for (i = 1; i < arr.length - 1; i++) {
-      if (arr[i] == "*") {
-        // Left side of the array including the first multiply sign and the number immediately after it
-        var left_side = arr.slice(0, i + 2);
-        // Right side of the array excluding the first multiply sign and the number immediately after it
-        var right_side = arr.slice(i + 2, arr.length);
-        // Delete the multiply sign and the adjacent numbers from the left side array
-        left_side.pop();
-        left_side.pop();
-        left_side.pop();
-        // Convert the numbers adjacent to the multiply sign from string to number
-        var num1 = Number(arr[i - 1]);
-        var num2 = Number(arr[i + 1]);
-        // Multiply the numbers adjacent to the first multiply sign
-        var new_num = num1 * num2;
-        // Add the result to the left side array
-        left_side.push(new_num);
-        // New array concatenating the modified left side array and the intact right side array
-        arr = left_side.concat(right_side);
-      }
+    document.getElementsByTagName("h2")[1].innerHTML =
+      document.getElementsByTagName("h2")[0].innerHTML;
+    while (
+      document.getElementsByTagName("h2")[1].innerHTML.includes("*") == true
+    ) {
+      var equals_index = document
+        .getElementsByTagName("h2")[1]
+        .innerHTML.indexOf("=");
+      // A slice of the string without the equals sign
+      var original_string = document
+        .getElementsByTagName("h2")[1]
+        .innerHTML.slice(0, equals_index);
+      // Split the slice using a blank space delimitor
+      var ar = original_string.split(" ");
+      // Loop through the array to find multiply operators
+      var mult_index = ar.indexOf("*");
+      // Left side of the array including the first multiply sign and the number immediately after it
+      var left_side = ar.slice(0, mult_index + 2);
+      // Right side of the array excluding the first multiply sign and the number immediately after it
+      var right_side = ar.slice(mult_index + 2, ar.length);
+      // Delete the multiply sign and the adjacent numbers from the left side array
+      left_side.pop();
+      left_side.pop();
+      left_side.pop();
+      // Convert the numbers adjacent to the multiply sign from string to number
+      var num1 = Number(ar[mult_index - 1]);
+      var num2 = Number(ar[mult_index + 1]);
+      // Multiply the numbers adjacent to the first multiply sign
+      var new_num = num1 * num2;
+      // Add the result to the left side array
+      left_side.push(new_num);
+      // New array concatenating the modified left side array and the intact right side array
+      var new_ar = left_side.concat(right_side);
+      var new_string = new_ar.join();
+      document.getElementsByTagName("h2")[1].innerHTML = new_string;
+      var newest_string = new_string.replaceAll(",", " ");
+      //newest_string.push(" =");
+      document.getElementsByTagName("h2")[1].innerHTML = `${newest_string} =`;
     }
-    // Perform same as above for the divide sign
-    for (i = 1; i < arr.length - 1; i++) {
-      if (arr[i] == "/") {
-        var left_side = arr.slice(0, i + 2);
-        var right_side = arr.slice(i + 2, arr.length);
-        left_side.pop();
-        left_side.pop();
-        left_side.pop();
-        var num1 = Number(arr[i - 1]);
-        var num2 = Number(arr[i + 1]);
-        var new_num = num1 / num2;
-        left_side.push(new_num);
-        arr = left_side.concat(right_side);
-      }
-    }
-    // Same as above for the plus sign
-    for (i = 1; i < arr.length - 1; i++) {
-      if (arr[i] == "+") {
-        var left_side = arr.slice(0, i + 2);
-        var right_side = arr.slice(i + 2, arr.length);
-        left_side.pop();
-        left_side.pop();
-        left_side.pop();
-        var num1 = Number(arr[i - 1]);
-        var num2 = Number(arr[i + 1]);
-        var new_num = num1 + num2;
-        left_side.push(new_num);
-        arr = left_side.concat(right_side);
-      }
-    }
-    // Same as above for the minus sign
-    for (i = 1; i < arr.length - 1; i++) {
-      if (arr[i] == "-") {
-        var left_side = arr.slice(0, i + 2);
-        var right_side = arr.slice(i + 2, arr.length);
-        left_side.pop();
-        left_side.pop();
-        left_side.pop();
-        var num1 = Number(arr[i - 1]);
-        var num2 = Number(arr[i + 1]);
-        var new_num = num1 - num2;
-        left_side.push(new_num);
-        arr = left_side.concat(right_side);
-      }
-    }
-    // The only element that's left after all the lopping is the final result, round it to 6 decimals
-    let result = arr[0].toFixed(6);
+
+    document.getElementsByTagName("h2")[1].innerHTML = document
+      .getElementsByTagName("h2")[1]
+      .innerHTML.slice(0, [
+        document.getElementsByTagName("h2")[1].innerHTML.length - 1,
+      ]);
+
     // Append the result value to the screen
-    document.getElementsByTagName("h2")[0].innerHTML += ` ${result}`;
   }
 }
