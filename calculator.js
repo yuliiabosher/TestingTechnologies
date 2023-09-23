@@ -31,11 +31,24 @@ document.getElementById("b0").addEventListener("click", function () {
 });
 // Add an event listener to the dot button
 document.getElementById("bdot").addEventListener("click", function () {
-  // If a value already contains a dot, wipe everything and display 0
-  if (document.getElementsByTagName("h2")[0].innerHTML.includes(".")) {
+  // Split the screen content by the blank space delimitor
+  let check_dot = document.getElementsByTagName("h2")[0].innerHTML.split(" ");
+  /* If when the dot is pressed the last element on the screen is a numeric value that 
+  already contains a dot, wipe everything and display 0 */
+  if (check_dot[check_dot.length - 1].includes(".")) {
     document.getElementsByTagName("h2")[0].innerHTML = 0;
-    // Otherwise append the dot
-  } else {
+    /* If when the dot is pressed the last non-blank element on the screen 
+    is one of the operator signs, wipe everything and display 0 */
+  } else if (
+    check_dot[check_dot.length - 1] == "+" ||
+    check_dot[check_dot.length - 1] == "-" ||
+    check_dot[check_dot.length - 1] == "*" ||
+    check_dot[check_dot.length - 1] == "/"
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+  }
+  // Otherwise append the dot
+  else {
     press(".");
   }
 });
@@ -71,7 +84,7 @@ function addReplaceSign(sign) {
     // If the screen displays a minus sign only, display a minus sign
   } else if (document.getElementsByTagName("h2")[0].innerHTML == "-") {
     document.getElementsByTagName("h2")[0].innerHTML = "-";
-    // Otherwise if there is already and operator sign at the end, replace that operator sign with the new one
+    // Otherwise if there is already an operator sign at the end, replace that operator sign with the new one
   } else if (
     document.getElementsByTagName("h2")[0].innerHTML[
       document.getElementsByTagName("h2")[0].innerHTML.length - 1
@@ -99,13 +112,43 @@ function press(num) {
   // If the screen displays 0 and the button pressed is not the dot, display the number pressed
   if (document.getElementsByTagName("h2")[0].innerHTML == "0" && num != ".") {
     document.getElementsByTagName("h2")[0].innerHTML = num;
-    // If the screen displays 0 and the button pressed is the dot, display 0 followed by a dot
+    // If the last element on the screen is one of the operator signs and the dot is pressed, display 0
   } else if (
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 2
+    ] == "+" &&
+    num == "."
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+  } else if (
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 2
+    ] == "-" &&
+    num == "."
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+  } else if (
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 2
+    ] == "*" &&
+    num == "."
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+  } else if (
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 2
+    ] == "/" &&
+    num == "."
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+  }
+  // If the screen displays 0 and the button pressed is the dot, display 0 followed by a dot
+  else if (
     document.getElementsByTagName("h2")[0].innerHTML == "0" &&
     num == "."
   ) {
     document.getElementsByTagName("h2")[0].innerHTML = "0.";
-    // Append a number to the screen if the screen does not diplay 0
+    // Otherwise append a number to the screen
   } else {
     document.getElementsByTagName("h2")[0].innerHTML += num;
   }
