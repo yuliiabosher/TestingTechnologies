@@ -190,50 +190,67 @@ function equals() {
     document.getElementsByTagName("h2")[0].innerHTML += " =";
     document.getElementsByTagName("h2")[1].innerHTML =
       document.getElementsByTagName("h2")[0].innerHTML;
-    while (
-      document.getElementsByTagName("h2")[1].innerHTML.includes("*") == true
-    ) {
-      var equals_index = document
-        .getElementsByTagName("h2")[1]
-        .innerHTML.indexOf("=");
-      // A slice of the string without the equals sign
-      var original_string = document
-        .getElementsByTagName("h2")[1]
-        .innerHTML.slice(0, equals_index);
-      // Split the slice using a blank space delimitor
-      var ar = original_string.split(" ");
-      // Loop through the array to find multiply operators
-      var mult_index = ar.indexOf("*");
-      // Left side of the array including the first multiply sign and the number immediately after it
-      var left_side = ar.slice(0, mult_index + 2);
-      // Right side of the array excluding the first multiply sign and the number immediately after it
-      var right_side = ar.slice(mult_index + 2, ar.length);
-      // Delete the multiply sign and the adjacent numbers from the left side array
-      left_side.pop();
-      left_side.pop();
-      left_side.pop();
-      // Convert the numbers adjacent to the multiply sign from string to number
-      var num1 = Number(ar[mult_index - 1]);
-      var num2 = Number(ar[mult_index + 1]);
-      // Multiply the numbers adjacent to the first multiply sign
-      var new_num = num1 * num2;
-      // Add the result to the left side array
-      left_side.push(new_num);
-      // New array concatenating the modified left side array and the intact right side array
-      var new_ar = left_side.concat(right_side);
-      var new_string = new_ar.join();
-      document.getElementsByTagName("h2")[1].innerHTML = new_string;
-      var newest_string = new_string.replaceAll(",", " ");
-      //newest_string.push(" =");
-      document.getElementsByTagName("h2")[1].innerHTML = `${newest_string} =`;
-    }
+    function checkSign(sign) {
+      while (
+        document.getElementsByTagName("h2")[1].innerHTML.includes(sign) == true
+      ) {
+        var equals_index = document
+          .getElementsByTagName("h2")[1]
+          .innerHTML.indexOf("=");
+        // A slice of the string without the equals sign
+        var original_string = document
+          .getElementsByTagName("h2")[1]
+          .innerHTML.slice(0, equals_index);
+        // Split the slice using a blank space delimitor
+        var ar = original_string.split(" ");
+        // Loop through the array to find multiply operators
+        var mult_index = ar.indexOf(sign);
+        // Left side of the array including the first multiply sign and the number immediately after it
+        var left_side = ar.slice(0, mult_index + 2);
+        // Right side of the array excluding the first multiply sign and the number immediately after it
+        var right_side = ar.slice(mult_index + 2, ar.length);
+        // Delete the multiply sign and the adjacent numbers from the left side array
+        left_side.pop();
+        left_side.pop();
+        left_side.pop();
+        // Convert the numbers adjacent to the multiply sign from string to number
+        var num1 = Number(ar[mult_index - 1]);
+        var num2 = Number(ar[mult_index + 1]);
+        // Multiply the numbers adjacent to the first multiply sign
+        let new_num = 0;
+        switch (sign) {
+          case "*":
+            new_num = num1 * num2;
+            break;
+          case "/":
+            new_num = num1 / num2;
+            break;
+          case "+":
+            new_num = num1 + num2;
+            break;
+          case "-":
+            new_num = num1 - num2;
+            break;
+        }
 
+        // Add the result to the left side array
+        left_side.push(new_num);
+        // New array concatenating the modified left side array and the intact right side array
+        var new_ar = left_side.concat(right_side);
+        var new_string = new_ar.join();
+        document.getElementsByTagName("h2")[1].innerHTML = new_string;
+        var newest_string = new_string.replaceAll(",", " ");
+        document.getElementsByTagName("h2")[1].innerHTML = `${newest_string} =`;
+      }
+    }
+    checkSign("*");
+    checkSign("/");
+    checkSign("+");
+    checkSign("-");
     document.getElementsByTagName("h2")[1].innerHTML = document
       .getElementsByTagName("h2")[1]
       .innerHTML.slice(0, [
         document.getElementsByTagName("h2")[1].innerHTML.length - 1,
       ]);
-
-    // Append the result value to the screen
   }
 }
