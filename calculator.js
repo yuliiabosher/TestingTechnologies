@@ -40,16 +40,16 @@ document.getElementById("bc").addEventListener("click", function () {
 });
 
 document.getElementById("bplus").addEventListener("click", function () {
-  addReplaceSign("+");
+  addReplaceSign(" + ");
 });
 document.getElementById("bminus").addEventListener("click", function () {
-  addReplaceSign("-");
+  addReplaceSign(" - ");
 });
 document.getElementById("bmult").addEventListener("click", function () {
-  addReplaceSign("*");
+  addReplaceSign(" * ");
 });
 document.getElementById("bdivide").addEventListener("click", function () {
-  addReplaceSign("/");
+  addReplaceSign(" / ");
 });
 document.getElementById("bequals").addEventListener("click", function () {
   equals();
@@ -108,29 +108,59 @@ function equals() {
         0,
         document.getElementsByTagName("h2")[0].innerHTML.length - 1
       );
-    document.getElementsByTagName("h2")[0].innerHTML += "=";
+    document.getElementsByTagName("h2")[0].innerHTML += " =";
   } else {
-    document.getElementsByTagName("h2")[0].innerHTML += "=";
+    document.getElementsByTagName("h2")[0].innerHTML += " =";
     var equals_index = document
       .getElementsByTagName("h2")[0]
       .innerHTML.indexOf("=");
-    var original = document
+    var original_string = document
       .getElementsByTagName("h2")[0]
       .innerHTML.slice(0, equals_index);
-    var result = 0;
-    for (i = 0; i < original.length; i++) {
-      if (original[i] == "*") {
-        var left_side = original.slice(0, i + 2);
-        var right_side = original.slice(i + 2, original.length);
+    var arr = original_string.split(" ");
+    for (i = 1; i < arr.length - 1; i++) {
+      if (arr[i] == "*") {
+        var left_side = arr.slice(0, i + 2);
+        var right_side = arr.slice(i + 2, arr.length);
         left_side.pop();
         left_side.pop();
         left_side.pop();
-        var num1 = Number(original[i - 1]);
-        var num2 = Number(original[i + 1]);
+        var num1 = Number(arr[i - 1]);
+        var num2 = Number(arr[i + 1]);
         var new_num = num1 * num2;
         left_side.push(new_num);
-        var modified = left_side.concat(right_side);
+        arr = left_side.concat(right_side);
       }
     }
+    for (i = 1; i < arr.length - 1; i++) {
+      if (arr[i] == "/") {
+        var left_side = arr.slice(0, i + 2);
+        var right_side = arr.slice(i + 2, arr.length);
+        left_side.pop();
+        left_side.pop();
+        left_side.pop();
+        var num1 = Number(arr[i - 1]);
+        var num2 = Number(arr[i + 1]);
+        var new_num = num1 / num2;
+        left_side.push(new_num);
+        arr = left_side.concat(right_side);
+      }
+    }
+    for (i = 1; i < arr.length - 1; i++) {
+      if (arr[i] == "+") {
+        var left_side = arr.slice(0, i + 2);
+        var right_side = arr.slice(i + 2, arr.length);
+        left_side.pop();
+        left_side.pop();
+        left_side.pop();
+        var num1 = Number(arr[i - 1]);
+        var num2 = Number(arr[i + 1]);
+        var new_num = num1 + num2;
+        left_side.push(new_num);
+        arr = left_side.concat(right_side);
+      }
+    }
+    let result = arr[0];
+    document.getElementsByTagName("h2")[0].innerHTML += ` ${result}`;
   }
 }
