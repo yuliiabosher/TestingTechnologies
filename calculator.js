@@ -192,7 +192,9 @@ function equals() {
       document.getElementsByTagName("h2")[0].innerHTML;
     function checkSign(sign) {
       while (
-        document.getElementsByTagName("h2")[1].innerHTML.includes(sign) == true
+        document.getElementsByTagName("h2")[1].innerHTML.includes(sign) ==
+          true &&
+        document.getElementsByTagName("h2")[1].innerHTML.length > 5
       ) {
         var equals_index = document
           .getElementsByTagName("h2")[1]
@@ -216,6 +218,7 @@ function equals() {
         // Convert the numbers adjacent to the multiply sign from string to number
         var num1 = Number(ar[mult_index - 1]);
         var num2 = Number(ar[mult_index + 1]);
+
         // Multiply the numbers adjacent to the first multiply sign
         let new_num = 0;
         switch (sign) {
@@ -229,12 +232,17 @@ function equals() {
             new_num = num1 + num2;
             break;
           case "-":
+            if (mult_index == 0) {
+              num1 = 0;
+            }
             new_num = num1 - num2;
             break;
         }
 
         // Add the result to the left side array
+
         left_side.push(new_num);
+
         // New array concatenating the modified left side array and the intact right side array
         var new_ar = left_side.concat(right_side);
         var new_string = new_ar.join();
