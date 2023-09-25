@@ -56,6 +56,7 @@ document.getElementById("bdot").addEventListener("click", function () {
 document.getElementById("bc").addEventListener("click", function () {
   // When the C button is pressed, wipe everything and display 0
   document.getElementsByTagName("h2")[0].innerHTML = 0;
+  document.getElementsByTagName("h2")[1].innerHTML = null;
 });
 // Add event listeners to the sign buttons
 document.getElementById("bplus").addEventListener("click", function () {
@@ -75,10 +76,18 @@ document.getElementById("bequals").addEventListener("click", function () {
 });
 // Function to add an operator sign at the end when an operator sign button is clicked
 function addReplaceSign(sign) {
+  // If the screen already displays an equals sign, replace everything and display 0
+  if (document.getElementsByTagName("h2")[0].innerHTML.includes("=") == true) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+    document.getElementsByTagName("h2")[1].innerHTML = null;
+  }
   // If the screen displays 0 and the button pressed is the minus sign, display a minus sign
-  if (document.getElementsByTagName("h2")[0].innerHTML == 0 && sign == " - ") {
+  else if (
+    document.getElementsByTagName("h2")[0].innerHTML == 0 &&
+    sign == " - "
+  ) {
     document.getElementsByTagName("h2")[0].innerHTML = "-";
-    // If the screen displays 0 and the button pressed is not the minus sign, display 0
+    // If the screen displays 0 and the operator button pressed is not the minus sign, display 0
   } else if (document.getElementsByTagName("h2")[0].innerHTML == 0) {
     document.getElementsByTagName("h2")[0].innerHTML = 0;
     // If the screen displays a minus sign only, display a minus sign
@@ -109,8 +118,16 @@ function addReplaceSign(sign) {
 }
 // Function for event listeners attached to the number buttons and the dot button
 function press(num) {
+  // If the screen already displays an equals sign, replace everything and display 0
+  if (document.getElementsByTagName("h2")[0].innerHTML.includes("=") == true) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+    document.getElementsByTagName("h2")[1].innerHTML = null;
+  }
   // If the screen displays 0 and the button pressed is not the dot, display the number pressed
-  if (document.getElementsByTagName("h2")[0].innerHTML == "0" && num != ".") {
+  else if (
+    document.getElementsByTagName("h2")[0].innerHTML == "0" &&
+    num != "."
+  ) {
     document.getElementsByTagName("h2")[0].innerHTML = num;
     // If the last element on the screen is one of the operator signs and the dot is pressed, display 0
   } else if (
@@ -205,21 +222,20 @@ function equals() {
           .innerHTML.slice(0, equals_index);
         // Split the slice using a blank space delimitor
         var ar = original_string.split(" ");
-        // Loop through the array to find multiply operators
-        var mult_index = ar.indexOf(sign);
-        // Left side of the array including the first multiply sign and the number immediately after it
-        var left_side = ar.slice(0, mult_index + 2);
-        // Right side of the array excluding the first multiply sign and the number immediately after it
-        var right_side = ar.slice(mult_index + 2, ar.length);
-        // Delete the multiply sign and the adjacent numbers from the left side array
+        // Loop through the array to find an operator sign
+        var sign_index = ar.indexOf(sign);
+        // Left side of the array including the first operator sign and the number immediately after it
+        var left_side = ar.slice(0, sign_index + 2);
+        // Right side of the array excluding the first operator sign and the number immediately after it
+        var right_side = ar.slice(sign_index + 2, ar.length);
+        // Delete the operator sign and the adjacent numbers from the left side array
         left_side.pop();
         left_side.pop();
         left_side.pop();
-        // Convert the numbers adjacent to the multiply sign from string to number
-        var num1 = Number(ar[mult_index - 1]);
-        var num2 = Number(ar[mult_index + 1]);
-        console.log(num1, num2);
-        // Multiply the numbers adjacent to the first multiply sign
+        // Convert the numbers adjacent to the operator sign from string to number
+        var num1 = Number(ar[sign_index - 1]);
+        var num2 = Number(ar[sign_index + 1]);
+        // Process the numbers adjacent to the first operator sign
         let new_num = 0;
         switch (sign) {
           case "*":
@@ -232,17 +248,23 @@ function equals() {
             new_num = num1 + num2;
             break;
           case "-":
-            if (mult_index == 0 || mult_index == -1) {
-              num1 = 0;
-              new_num = num2;
+            // If the minus sign cannot be found, exit the function
+            if (sign_index == -1) {
               return;
             }
+            // Otherwise subtract the second number from the first number
             new_num = num1 - num2;
             break;
         }
+        if (
+          document.getElementsByTagName("h2")[0].innerHTML.includes("/") ==
+            true ||
+          document.getElementsByTagName("h2")[0].innerHTML.includes(".") == true
+        ) {
+          new_num = new_num.toFixed(5);
+        }
 
         // Add the result to the left side array
-
         left_side.push(new_num);
 
         // New array concatenating the modified left side array and the intact right side array
