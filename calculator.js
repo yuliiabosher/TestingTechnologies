@@ -130,14 +130,18 @@ function addReplaceSign(sign) {
 
     // If there is no operator sign at the end, add an operator sign at the end
   } else {
+    // If the last element of the string is the dot, add a zero, then an operator sign then exit
     if (
       document.getElementsByTagName("h2")[0].innerHTML[
         document.getElementsByTagName("h2")[0].innerHTML.length - 1
       ] == "."
     ) {
       document.getElementsByTagName("h2")[0].innerHTML += 0;
+      document.getElementsByTagName("h2")[0].innerHTML += sign;
+    } else {
+      // Otherwise just add an operator sign
+      document.getElementsByTagName("h2")[0].innerHTML += sign;
     }
-    document.getElementsByTagName("h2")[0].innerHTML += sign;
   }
 }
 // Function for event listeners attached to the number buttons and the dot button
@@ -301,12 +305,12 @@ function processNumbers(sign) {
         new_num = num1 - num2;
         break;
     }
-    // For operations with floats or division round the value to 5 decimals
-    if (
-      document.getElementsByTagName("h2")[0].innerHTML.includes("/") == true ||
-      document.getElementsByTagName("h2")[0].innerHTML.includes(".") == true
-    ) {
+    // If the rounded to integer number is different from not rounded number, round it to 5 decimals
+    if (new_num.toFixed() != new_num) {
       new_num = new_num.toFixed(5);
+      // Otherwise round it to integer
+    } else {
+      new_num.toFixed();
     }
     // Add the result to the left side array
     left_side.push(new_num);
