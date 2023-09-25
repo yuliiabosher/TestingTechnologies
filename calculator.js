@@ -209,78 +209,6 @@ function equals() {
     // Copy the screen string to the line below
     document.getElementsByTagName("h2")[1].innerHTML =
       document.getElementsByTagName("h2")[0].innerHTML;
-    function processNumbers(sign) {
-      /* Iterate through the copy of the screen string while it still 
-      includes an operator sign and is more than 5 characters long */
-      while (
-        document.getElementsByTagName("h2")[1].innerHTML.includes(sign) ==
-          true &&
-        document.getElementsByTagName("h2")[1].innerHTML.length > 5
-      ) {
-        // Index of the equals sign in the copy of the screen string
-        var equals_index = document
-          .getElementsByTagName("h2")[1]
-          .innerHTML.indexOf("=");
-        // A slice of the string without the equals sign
-        var original_string = document
-          .getElementsByTagName("h2")[1]
-          .innerHTML.slice(0, equals_index);
-        // Split the slice using a blank space delimitor
-        var ar = original_string.split(" ");
-        // In the resulting array find the index of an operator sign
-        var sign_index = ar.indexOf(sign);
-        // Left side of the array including the first operator sign and the number immediately after it
-        var left_side = ar.slice(0, sign_index + 2);
-        // Right side of the array excluding the first operator sign and the number immediately after it
-        var right_side = ar.slice(sign_index + 2, ar.length);
-        // Delete the operator sign and the adjacent numbers from the left side array
-        left_side.pop();
-        left_side.pop();
-        left_side.pop();
-        // Convert the numbers adjacent to the operator sign from string to number
-        var num1 = Number(ar[sign_index - 1]);
-        var num2 = Number(ar[sign_index + 1]);
-        // Process the numbers adjacent to the first operator sign
-        let new_num = 0;
-        switch (sign) {
-          case "*":
-            new_num = num1 * num2;
-            break;
-          case "/":
-            new_num = num1 / num2;
-            break;
-          case "+":
-            new_num = num1 + num2;
-            break;
-          case "-":
-            // If the minus sign cannot be found, exit the function
-            if (sign_index == -1) {
-              return;
-            }
-            // Otherwise subtract the second number from the first number
-            new_num = num1 - num2;
-            break;
-        }
-        // For operations with floats or division round the value to 5 decimals
-        if (
-          document.getElementsByTagName("h2")[0].innerHTML.includes("/") ==
-            true ||
-          document.getElementsByTagName("h2")[0].innerHTML.includes(".") == true
-        ) {
-          new_num = new_num.toFixed(5);
-        }
-        // Add the result to the left side array
-        left_side.push(new_num);
-        // New array concatenating the modified left side array and the intact right side array
-        var new_ar = left_side.concat(right_side);
-        // Turn the array into a string
-        var new_string = new_ar.join();
-        // Replace commas with spaces
-        var newest_string = new_string.replaceAll(",", " ");
-        // Replace the copy of the screen string with the resulting string, a blank space and an equals sign
-        document.getElementsByTagName("h2")[1].innerHTML = `${newest_string} =`;
-      }
-    }
     // Call the function processing the operations in the BODMAS order
     processNumbers("/");
     processNumbers("*");
@@ -292,5 +220,75 @@ function equals() {
       .innerHTML.slice(0, [
         document.getElementsByTagName("h2")[1].innerHTML.length - 1,
       ]);
+  }
+}
+function processNumbers(sign) {
+  /* Iterate through the copy of the screen string while it still 
+      includes an operator sign and is more than 5 characters long */
+  while (
+    document.getElementsByTagName("h2")[1].innerHTML.includes(sign) == true &&
+    document.getElementsByTagName("h2")[1].innerHTML.length > 5
+  ) {
+    // Index of the equals sign in the copy of the screen string
+    var equals_index = document
+      .getElementsByTagName("h2")[1]
+      .innerHTML.indexOf("=");
+    // A slice of the string without the equals sign
+    var original_string = document
+      .getElementsByTagName("h2")[1]
+      .innerHTML.slice(0, equals_index);
+    // Split the slice using a blank space delimitor
+    var ar = original_string.split(" ");
+    // In the resulting array find the index of an operator sign
+    var sign_index = ar.indexOf(sign);
+    // Left side of the array including the first operator sign and the number immediately after it
+    var left_side = ar.slice(0, sign_index + 2);
+    // Right side of the array excluding the first operator sign and the number immediately after it
+    var right_side = ar.slice(sign_index + 2, ar.length);
+    // Delete the operator sign and the adjacent numbers from the left side array
+    left_side.pop();
+    left_side.pop();
+    left_side.pop();
+    // Convert the numbers adjacent to the operator sign from string to number
+    var num1 = Number(ar[sign_index - 1]);
+    var num2 = Number(ar[sign_index + 1]);
+    // Process the numbers adjacent to the first operator sign
+    let new_num = 0;
+    switch (sign) {
+      case "*":
+        new_num = num1 * num2;
+        break;
+      case "/":
+        new_num = num1 / num2;
+        break;
+      case "+":
+        new_num = num1 + num2;
+        break;
+      case "-":
+        // If the minus sign element cannot be found in the array, exit the function
+        if (sign_index == -1) {
+          return;
+        }
+        // Otherwise subtract the second number from the first number
+        new_num = num1 - num2;
+        break;
+    }
+    // For operations with floats or division round the value to 5 decimals
+    if (
+      document.getElementsByTagName("h2")[0].innerHTML.includes("/") == true ||
+      document.getElementsByTagName("h2")[0].innerHTML.includes(".") == true
+    ) {
+      new_num = new_num.toFixed(5);
+    }
+    // Add the result to the left side array
+    left_side.push(new_num);
+    // New array concatenating the modified left side array and the intact right side array
+    var new_ar = left_side.concat(right_side);
+    // Turn the array into a string
+    var new_string = new_ar.join();
+    // Replace commas with spaces
+    var newest_string = new_string.replaceAll(",", " ");
+    // Replace the copy of the screen string with the resulting string, a blank space and an equals sign
+    document.getElementsByTagName("h2")[1].innerHTML = `${newest_string} =`;
   }
 }
