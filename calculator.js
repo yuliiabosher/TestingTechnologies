@@ -95,22 +95,39 @@ function addReplaceSign(sign) {
     document.getElementsByTagName("h2")[0].innerHTML = "-";
     // Otherwise if there is already an operator sign at the end, replace that operator sign with the new one
   } else if (
-    document.getElementsByTagName("h2")[0].innerHTML[
-      document.getElementsByTagName("h2")[0].innerHTML.length - 1
-    ] == "-" ||
-    document.getElementsByTagName("h2")[0].innerHTML[
-      document.getElementsByTagName("h2")[0].innerHTML.length - 1
-    ] == "+" ||
-    document.getElementsByTagName("h2")[0].innerHTML[
-      document.getElementsByTagName("h2")[0].innerHTML.length - 1
-    ] == "*" ||
-    document.getElementsByTagName("h2")[0].innerHTML[
-      document.getElementsByTagName("h2")[0].innerHTML.length - 1
-    ] == "/"
+    document
+      .getElementsByTagName("h2")[0]
+      .innerHTML.slice(
+        document.getElementsByTagName("h2")[0].innerHTML.length - 3,
+        document.getElementsByTagName("h2")[0].innerHTML.length
+      ) == " - " ||
+    document
+      .getElementsByTagName("h2")[0]
+      .innerHTML.slice(
+        document.getElementsByTagName("h2")[0].innerHTML.length - 3,
+        document.getElementsByTagName("h2")[0].innerHTML.length
+      ) == " + " ||
+    document
+      .getElementsByTagName("h2")[0]
+      .innerHTML.slice(
+        document.getElementsByTagName("h2")[0].innerHTML.length - 3,
+        document.getElementsByTagName("h2")[0].innerHTML.length
+      ) == " * " ||
+    document
+      .getElementsByTagName("h2")[0]
+      .innerHTML.slice(
+        document.getElementsByTagName("h2")[0].innerHTML.length - 3,
+        document.getElementsByTagName("h2")[0].innerHTML.length
+      ) == " / "
   ) {
-    document.getElementsByTagName("h2")[0].innerHTML[
-      document.getElementsByTagName("h2")[0].innerHTML.length - 1
-    ] = sign;
+    document.getElementsByTagName("h2")[0].innerHTML = document
+      .getElementsByTagName("h2")[0]
+      .innerHTML.slice(
+        0,
+        document.getElementsByTagName("h2")[0].innerHTML.length - 3
+      )
+      .concat(sign);
+
     // If there is no operator sign at the end, add an operator sign at the end
   } else {
     document.getElementsByTagName("h2")[0].innerHTML += sign;
