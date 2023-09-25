@@ -130,7 +130,7 @@ function addReplaceSign(sign) {
 
     // If there is no operator sign at the end, add an operator sign at the end
   } else {
-    // If the last element of the string is the dot, add a zero, then an operator sign then exit
+    // If the last element of the string is the dot, add a zero, then an operator sign
     if (
       document.getElementsByTagName("h2")[0].innerHTML[
         document.getElementsByTagName("h2")[0].innerHTML.length - 1
@@ -233,6 +233,14 @@ function equals() {
     document.getElementsByTagName("h2")[0].innerHTML += " =";
     // Otherwise just append a space and an equals sign to the screen
   } else {
+    if (
+      document.getElementsByTagName("h2")[0].innerHTML[
+        document.getElementsByTagName("h2")[0].innerHTML.length - 1
+      ] == "."
+    ) {
+      document.getElementsByTagName("h2")[0].innerHTML += 0;
+    }
+
     document.getElementsByTagName("h2")[0].innerHTML += " =";
     // Copy the screen string to the line below
     document.getElementsByTagName("h2")[1].innerHTML =
