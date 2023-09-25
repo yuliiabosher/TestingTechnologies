@@ -235,6 +235,7 @@ function equals() {
             if (mult_index == 0 || mult_index == -1) {
               num1 = 0;
               new_num = num2;
+              return;
             }
             new_num = num1 - num2;
             break;
