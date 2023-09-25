@@ -209,11 +209,11 @@ function equals() {
     // Copy the screen string to the line below
     document.getElementsByTagName("h2")[1].innerHTML =
       document.getElementsByTagName("h2")[0].innerHTML;
-    // Call the function processing the operations in the BODMAS order
+    // Call the function processing the operations one by one
     processNumbers("/");
     processNumbers("*");
-    processNumbers("+");
     processNumbers("-");
+    processNumbers("+");
     // Replace the copy of the screen string with the slice of that string that excludes the equals sign
     document.getElementsByTagName("h2")[1].innerHTML = document
       .getElementsByTagName("h2")[1]
@@ -267,6 +267,10 @@ function processNumbers(sign) {
       case "-":
         // If the minus sign element cannot be found in the array, exit the function
         if (sign_index == -1) {
+          return;
+        } else if (sign_index == 0) {
+          num1 = 0;
+          new_num = num1 - num2;
           return;
         }
         // Otherwise subtract the second number from the first number
