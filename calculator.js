@@ -31,13 +31,13 @@ document.getElementById("b0").addEventListener("click", function () {
 });
 // Add an event listener to the dot button
 document.getElementById("bdot").addEventListener("click", function () {
-  // Split the screen content by the blank space delimitor
+  // Split the screen content string by the blank space delimitor
   let check_dot = document.getElementsByTagName("h2")[0].innerHTML.split(" ");
-  /* If when the dot is pressed the last element on the screen is a numeric value that 
+  /* If the dot is pressed and the last element on the screen is a numeric value that 
   already contains a dot, wipe everything and display 0 */
   if (check_dot[check_dot.length - 1].includes(".")) {
     document.getElementsByTagName("h2")[0].innerHTML = 0;
-    /* If when the dot is pressed the last non-blank element on the screen 
+    /* If the dot is pressed and the last non-blank element on the screen 
     is one of the operator signs, wipe everything and display 0 */
   } else if (
     check_dot[check_dot.length - 1] == "+" ||
@@ -178,6 +178,7 @@ function equals() {
     document.getElementsByTagName("h2")[0].innerHTML.includes("=")
   ) {
     document.getElementsByTagName("h2")[0].innerHTML = 0;
+    document.getElementsByTagName("h2")[1].innerHTML = null;
     // If the last element on the screen is one of the operator signs
   } else if (
     document.getElementsByTagName("h2")[0].innerHTML[
@@ -202,17 +203,21 @@ function equals() {
       );
     // Then append a blank space and an equals sign to the screen
     document.getElementsByTagName("h2")[0].innerHTML += " =";
-    // Otherwise append a space and an equals sign to the screen
+    // Otherwise just append a space and an equals sign to the screen
   } else {
     document.getElementsByTagName("h2")[0].innerHTML += " =";
+    // Copy the screen string to the line below
     document.getElementsByTagName("h2")[1].innerHTML =
       document.getElementsByTagName("h2")[0].innerHTML;
-    function checkSign(sign) {
+    function processNumbers(sign) {
+      /* Iterate through the copy of the screen string while it still 
+      includes an operator sign and is more than 5 characters long */
       while (
         document.getElementsByTagName("h2")[1].innerHTML.includes(sign) ==
           true &&
         document.getElementsByTagName("h2")[1].innerHTML.length > 5
       ) {
+        // Index of the equals sign in the copy of the screen string
         var equals_index = document
           .getElementsByTagName("h2")[1]
           .innerHTML.indexOf("=");
@@ -222,7 +227,7 @@ function equals() {
           .innerHTML.slice(0, equals_index);
         // Split the slice using a blank space delimitor
         var ar = original_string.split(" ");
-        // Loop through the array to find an operator sign
+        // In the resulting array find the index of an operator sign
         var sign_index = ar.indexOf(sign);
         // Left side of the array including the first operator sign and the number immediately after it
         var left_side = ar.slice(0, sign_index + 2);
@@ -256,6 +261,7 @@ function equals() {
             new_num = num1 - num2;
             break;
         }
+        // For operations with floats or division round the value to 5 decimals
         if (
           document.getElementsByTagName("h2")[0].innerHTML.includes("/") ==
             true ||
@@ -263,21 +269,24 @@ function equals() {
         ) {
           new_num = new_num.toFixed(5);
         }
-
         // Add the result to the left side array
         left_side.push(new_num);
-
         // New array concatenating the modified left side array and the intact right side array
         var new_ar = left_side.concat(right_side);
+        // Turn the array into a string
         var new_string = new_ar.join();
+        // Replace commas with spaces
         var newest_string = new_string.replaceAll(",", " ");
+        // Replace the copy of the screen string with the resulting string, a blank space and an equals sign
         document.getElementsByTagName("h2")[1].innerHTML = `${newest_string} =`;
       }
     }
-    checkSign("*");
-    checkSign("/");
-    checkSign("+");
-    checkSign("-");
+    // Call the function processing the operations in the BODMAS order
+    processNumbers("/");
+    processNumbers("*");
+    processNumbers("+");
+    processNumbers("-");
+    // Replace the copy of the screen string with the slice of that string that excludes the equals sign
     document.getElementsByTagName("h2")[1].innerHTML = document
       .getElementsByTagName("h2")[1]
       .innerHTML.slice(0, [
