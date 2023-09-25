@@ -130,6 +130,13 @@ function addReplaceSign(sign) {
 
     // If there is no operator sign at the end, add an operator sign at the end
   } else {
+    if (
+      document.getElementsByTagName("h2")[0].innerHTML[
+        document.getElementsByTagName("h2")[0].innerHTML.length - 1
+      ] == "."
+    ) {
+      document.getElementsByTagName("h2")[0].innerHTML += 0;
+    }
     document.getElementsByTagName("h2")[0].innerHTML += sign;
   }
 }
