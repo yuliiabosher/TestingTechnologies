@@ -304,6 +304,8 @@ function processNumbers(sign) {
         // If the minus sign element cannot be found in the array, exit the function
         if (sign_index == -1) {
           return;
+          /* If the minus sign is the first element of the array, assign the first number variable to 0
+           so that it is not undefined and wouldnot cause an error*/
         } else if (sign_index == 0) {
           num1 = 0;
           new_num = num1 - num2;
