@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <title>Calculator</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-5 mb-5">
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <h1 class="text-secondary text-center"></h1>
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-sm-4 col-md-2 col-lg-4 col-xl-4"></div>
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+          <div class="card bg-light mb-3" style="width: 20rem">
+            <div class="card-header text-right bg-dark text-light">
+              <h2>0</h2>
+              <h2></h2>
+            </div>
+            <div class="card-body">
+              <div
+                class="btn-toolbar d-flex justify-content-center"
+                role="toolbar"
+                aria-label="Toolbar with button groups"
+              >
+                <div
+                  class="btn-group btn-group-lg"
+                  role="group"
+                  aria-label="First group"
+                >
+                  <button
+                    id="b7"
+                    type="button"
+                    class="btn btn-outline-dark"
+                    style="width: 60px; height: 60px"
+                  >
+                    7
+                  </button>
+                  <button
+                    id="b8"
+                    type="button"
+                    class="btn btn-outline-dark"
+                    style="width: 60px; height: 60px"
+                  >
+                    8
+                  </button>
+                  <button
+                    id="b9"
+                    type="button"
+                    class="btn btn-outline-dark"
+                    style="width: 60px; height: 60px"
+                  >
+                    9
+                  </button>
+                  <button
+                    id="bplus"
+                    type="button"
+                    class="btn btn-outline-success"
+                    style="width: 60px; height: 60px"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div
+                class="btn-toolbar d-flex justify-content-center"
+                role="toolbar"
+                aria-label="Toolbar with button groups"
+              >
+                <div
+                  class="btn-group btn-group-lg"
+                  role="group"
+                  aria-label="First group"
+                >
+                  <button
+                    id="b4"
+                    type="button"
+                    class="btn btn-outline-dark"
+                    style="width: 60px; height: 60px"
+                  >
+                    4
+                  </button>
+                  <button
+                    id="b5"
+                    type="button"
+                    class="btn btn-outline-dark"
+                    style="width: 60px; height: 60px"
+                  >
+                    5
+                  </button>
+                  <button
+                    id="b6"
+                    type="button"
+                    class="btn btn-outline-dark"
+                    style="width: 60px; height: 60px"
+                  >
+                    6
+                  </button>
+                  <button
+                    id="bminus"
+                    type="button"
+                    class="btn btn-outline-success"
+                    style="width: 60px; height: 60px"
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+              <div
+                class="btn-toolbar d-flex justify-content-center"
+                role="toolbar"
+                aria-label="Toolbar with button groups"
+              >
+                <div
+                  class="btn-group btn-group-lg"
+                  role="group"
+                  aria-label="First group"
+                >
+                  <button
+                    id="b1"
+                    type="button"
+                    class="btn btn-outline-dark"
+                    style="width: 60px; height: 60px"
+                  >
+                    1
+                  </button>
+                  <button
+                    id="b2"
+                    type="button"
+                    class="btn btn-outline-dark"
+                    style="width: 60px; height: 60px"
+                  >
+                    2
+                  </button>
+                  <button
+                    id="b3"
+                    type="button"
+                    class="btn btn-outline-dark"
+                    style="width: 60px; height: 60px"
+                  >
+                    3
+                  </button>
+                  <button
+                    id="bmult"
+                    type="button"
+                    class="btn btn-outline-success"
+                    style="width: 60px; height: 60px"
+                  >
+                    *
+                  </button>
+                </div>
+              </div>
+              <div
+                class="btn-toolbar d-flex justify-content-center"
+                role="toolbar"
+                aria-label="Toolbar with button groups"
+              >
+                <div
+                  class="btn-group btn-group-lg"
+                  role="group"
+                  aria-label="First group"
+                >
+                  <button
+                    id="b0"
+                    type="button"
+                    class="btn btn-outline-dark"
+                    style="width: 60px; height: 60px"
+                  >
+                    0
+                  </button>
+                  <button
+                    id="bdot"
+                    type="button"
+                    class="btn btn-outline-dark"
+                    style="width: 60px; height: 60px"
+                  >
+                    .
+                  </button>
+                  <button
+                    id="bc"
+                    type="button"
+                    class="btn btn-outline-dark"
+                    style="width: 60px; height: 60px"
+                  >
+                    C
+                  </button>
+                  <button
+                    id="bdivide"
+                    type="button"
+                    class="btn btn-outline-success"
+                    style="width: 60px; height: 60px"
+                  >
+                    /
+                  </button>
+                </div>
+              </div>
+              <div
+                class="btn-toolbar d-flex justify-content-center"
+                role="toolbar"
+                aria-label="Toolbar with button groups"
+              >
+                <button
+                  id="bequals"
+                  type="button"
+                  class="btn btn-outline-primary"
+                  style="width: 240px; height: 60px"
+                >
+                  =
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+      </div>
+    </div>
+    <script>
+    // Add event listeners to the number buttons
+document.getElementById("b7").addEventListener("click", function () {
+  press(7);
+});
+document.getElementById("b8").addEventListener("click", function () {
+  press(8);
+});
+document.getElementById("b9").addEventListener("click", function () {
+  press(9);
+});
+document.getElementById("b4").addEventListener("click", function () {
+  press(4);
+});
+document.getElementById("b5").addEventListener("click", function () {
+  press(5);
+});
+document.getElementById("b6").addEventListener("click", function () {
+  press(6);
+});
+document.getElementById("b1").addEventListener("click", function () {
+  press(1);
+});
+document.getElementById("b2").addEventListener("click", function () {
+  press(2);
+});
+document.getElementById("b3").addEventListener("click", function () {
+  press(3);
+});
+document.getElementById("b0").addEventListener("click", function () {
+  press(0);
+});
+// Add an event listener to the dot button
+document.getElementById("bdot").addEventListener("click", function () {
+  // Split the screen content string by the blank space delimitor
+  let check_dot = document.getElementsByTagName("h2")[0].innerHTML.split(" ");
+  /* If the dot is pressed and the last element on the screen is a numeric value that 
+  already contains a dot, wipe everything and display 0 */
+  if (check_dot[check_dot.length - 1].includes(".")) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+    /* If the dot is pressed and the last non-blank element on the screen 
+    is one of the operator signs, wipe everything and display 0 */
+  } else if (
+    check_dot[check_dot.length - 1] == "+" ||
+    check_dot[check_dot.length - 1] == "-" ||
+    check_dot[check_dot.length - 1] == "*" ||
+    check_dot[check_dot.length - 1] == "/"
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+  }
+  // Otherwise append the dot
+  else {
+    press(".");
+  }
+});
+// Add event listener to the C button
+document.getElementById("bc").addEventListener("click", function () {
+  // When the C button is pressed, wipe everything and display 0
+  document.getElementsByTagName("h2")[0].innerHTML = 0;
+  document.getElementsByTagName("h2")[1].innerHTML = null;
+});
+// Add event listeners to the sign buttons
+document.getElementById("bplus").addEventListener("click", function () {
+  addReplaceSign(" + ");
+});
+document.getElementById("bminus").addEventListener("click", function () {
+  addReplaceSign(" - ");
+});
+document.getElementById("bmult").addEventListener("click", function () {
+  addReplaceSign(" * ");
+});
+document.getElementById("bdivide").addEventListener("click", function () {
+  addReplaceSign(" / ");
+});
+document.getElementById("bequals").addEventListener("click", function () {
+  equals();
+});
+// Function to add an operator sign at the end when an operator sign button is clicked
+function addReplaceSign(sign) {
+  // If the screen already displays an equals sign, replace everything and display 0
+  if (document.getElementsByTagName("h2")[0].innerHTML.includes("=") == true) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+    document.getElementsByTagName("h2")[1].innerHTML = null;
+  }
+  // If the screen displays 0 and the button pressed is the minus sign, display a minus sign
+  else if (
+    document.getElementsByTagName("h2")[0].innerHTML == 0 &&
+    sign == " - "
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = "-";
+    // If the screen displays 0 and the operator button pressed is not the minus sign, display 0
+  } else if (document.getElementsByTagName("h2")[0].innerHTML == 0) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+    // If the screen displays a minus sign only, display a minus sign
+  } else if (document.getElementsByTagName("h2")[0].innerHTML == "-") {
+    document.getElementsByTagName("h2")[0].innerHTML = "-";
+    // Otherwise if there is already an operator sign at the end, replace that operator sign with the new one
+  } else if (
+    document
+      .getElementsByTagName("h2")[0]
+      .innerHTML.slice(
+        document.getElementsByTagName("h2")[0].innerHTML.length - 3,
+        document.getElementsByTagName("h2")[0].innerHTML.length
+      ) == " - " ||
+    document
+      .getElementsByTagName("h2")[0]
+      .innerHTML.slice(
+        document.getElementsByTagName("h2")[0].innerHTML.length - 3,
+        document.getElementsByTagName("h2")[0].innerHTML.length
+      ) == " + " ||
+    document
+      .getElementsByTagName("h2")[0]
+      .innerHTML.slice(
+        document.getElementsByTagName("h2")[0].innerHTML.length - 3,
+        document.getElementsByTagName("h2")[0].innerHTML.length
+      ) == " * " ||
+    document
+      .getElementsByTagName("h2")[0]
+      .innerHTML.slice(
+        document.getElementsByTagName("h2")[0].innerHTML.length - 3,
+        document.getElementsByTagName("h2")[0].innerHTML.length
+      ) == " / "
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = document
+      .getElementsByTagName("h2")[0]
+      .innerHTML.slice(
+        0,
+        document.getElementsByTagName("h2")[0].innerHTML.length - 3
+      )
+      .concat(sign);
+
+    // If there is no operator sign at the end, add an operator sign at the end
+  } else {
+    // If the last element of the string is the dot, add a zero, then an operator sign
+    if (
+      document.getElementsByTagName("h2")[0].innerHTML[
+        document.getElementsByTagName("h2")[0].innerHTML.length - 1
+      ] == "."
+    ) {
+      document.getElementsByTagName("h2")[0].innerHTML += 0;
+      document.getElementsByTagName("h2")[0].innerHTML += sign;
+    } else {
+      // Otherwise just add an operator sign
+      document.getElementsByTagName("h2")[0].innerHTML += sign;
+    }
+  }
+}
+// Function for event listeners attached to the number buttons and the dot button
+function press(num) {
+  // If the screen already displays an equals sign, replace everything and display 0
+  if (document.getElementsByTagName("h2")[0].innerHTML.includes("=") == true) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+    document.getElementsByTagName("h2")[1].innerHTML = null;
+  }
+  // If the screen displays 0 and the button pressed is not the dot, display the number pressed
+  else if (
+    document.getElementsByTagName("h2")[0].innerHTML == "0" &&
+    num != "."
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = num;
+    // If the last element on the screen is one of the operator signs and the dot is pressed, display 0
+  } else if (
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 2
+    ] == "+" &&
+    num == "."
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+  } else if (
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 2
+    ] == "-" &&
+    num == "."
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+  } else if (
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 2
+    ] == "*" &&
+    num == "."
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+  } else if (
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 2
+    ] == "/" &&
+    num == "."
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+  }
+  // If the screen displays 0 and the button pressed is the dot, display 0 followed by a dot
+  else if (
+    document.getElementsByTagName("h2")[0].innerHTML == "0" &&
+    num == "."
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = "0.";
+    // Otherwise append a number to the screen
+  } else {
+    document.getElementsByTagName("h2")[0].innerHTML += num;
+  }
+}
+// Function for the event listener attached to the equals sign
+function equals() {
+  // If the screen displays 0 or already displays an equals sign, display 0
+  if (
+    document.getElementsByTagName("h2")[0].innerHTML == "0" ||
+    document.getElementsByTagName("h2")[0].innerHTML.includes("=")
+  ) {
+    document.getElementsByTagName("h2")[0].innerHTML = 0;
+    document.getElementsByTagName("h2")[1].innerHTML = null;
+    // If the last element on the screen is one of the operator signs
+  } else if (
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 2
+    ] == "-" ||
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 2
+    ] == "+" ||
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 2
+    ] == "*" ||
+    document.getElementsByTagName("h2")[0].innerHTML[
+      document.getElementsByTagName("h2")[0].innerHTML.length - 2
+    ] == "/"
+  ) {
+    // Display a slice of the string before the operator sign
+    document.getElementsByTagName("h2")[0].innerHTML = document
+      .getElementsByTagName("h2")[0]
+      .innerHTML.slice(
+        0,
+        document.getElementsByTagName("h2")[0].innerHTML.length - 2
+      );
+    // Then append a blank space and an equals sign to the screen
+    document.getElementsByTagName("h2")[0].innerHTML += " =";
+    // Otherwise just append a space and an equals sign to the screen
+  } else {
+    if (
+      document.getElementsByTagName("h2")[0].innerHTML[
+        document.getElementsByTagName("h2")[0].innerHTML.length - 1
+      ] == "."
+    ) {
+      document.getElementsByTagName("h2")[0].innerHTML += 0;
+    }
+
+    document.getElementsByTagName("h2")[0].innerHTML += " =";
+    // Copy the screen string to the line below
+    document.getElementsByTagName("h2")[1].innerHTML =
+      document.getElementsByTagName("h2")[0].innerHTML;
+    // Call the function processing the operations one by one
+    processNumbers("/");
+    processNumbers("*");
+    processNumbers("-");
+    processNumbers("+");
+    // Replace the copy of the screen string with the slice of that string that excludes the equals sign
+    document.getElementsByTagName("h2")[1].innerHTML = document
+      .getElementsByTagName("h2")[1]
+      .innerHTML.slice(0, [
+        document.getElementsByTagName("h2")[1].innerHTML.length - 1,
+      ]);
+  }
+}
+function processNumbers(sign) {
+  /* Iterate through the copy of the screen string while it still 
+      includes an operator sign and is more than 5 characters long */
+  while (
+    document.getElementsByTagName("h2")[1].innerHTML.includes(sign) == true &&
+    document.getElementsByTagName("h2")[1].innerHTML.length > 5
+  ) {
+    // Index of the equals sign in the copy of the screen string
+    var equals_index = document
+      .getElementsByTagName("h2")[1]
+      .innerHTML.indexOf("=");
+    // A slice of the string without the equals sign
+    var original_string = document
+      .getElementsByTagName("h2")[1]
+      .innerHTML.slice(0, equals_index);
+    // Split the slice using a blank space delimitor
+    var ar = original_string.split(" ");
+    // In the resulting array find the index of an operator sign
+    var sign_index = ar.indexOf(sign);
+    // Left side of the array including the first operator sign and the number immediately after it
+    var left_side = ar.slice(0, sign_index + 2);
+    // Right side of the array excluding the first operator sign and the number immediately after it
+    var right_side = ar.slice(sign_index + 2, ar.length);
+    // Delete the operator sign and the adjacent numbers from the left side array
+    left_side.pop();
+    left_side.pop();
+    left_side.pop();
+    // Convert the numbers adjacent to the operator sign from string to number
+    var num1 = Number(ar[sign_index - 1]);
+    var num2 = Number(ar[sign_index + 1]);
+    // Process the numbers adjacent to the first operator sign
+    let new_num = 0;
+    switch (sign) {
+      case "*":
+        new_num = num1 * num2;
+        break;
+      case "/":
+        new_num = num1 / num2;
+        break;
+      case "+":
+        new_num = num1 + num2;
+        break;
+      case "-":
+        // If the minus sign element cannot be found in the array, exit the function
+        if (sign_index == -1) {
+          return;
+          /* If the minus sign is the first element of the array, assign the first number variable to 0
+           so that it is not undefined and wouldnot cause an error*/
+        } else if (sign_index == 0) {
+          num1 = 0;
+          new_num = num1 - num2;
+          return;
+        }
+        // Otherwise subtract the second number from the first number
+        new_num = num1 - num2;
+        break;
+    }
+    // If the rounded to integer number is different from not rounded number, round it to 5 decimals
+    if (new_num.toFixed() != new_num) {
+      new_num = new_num.toFixed(5);
+      // Otherwise round it to integer
+    } else {
+      new_num.toFixed();
+    }
+    // Add the result to the left side array
+    left_side.push(new_num);
+    // New array concatenating the modified left side array and the intact right side array
+    var new_ar = left_side.concat(right_side);
+    // Turn the array into a string
+    var new_string = new_ar.join();
+    // Replace commas with spaces
+    var newest_string = new_string.replaceAll(",", " ");
+    // Replace the copy of the screen string with the resulting string, a blank space and an equals sign
+    document.getElementsByTagName("h2")[1].innerHTML = `${newest_string} =`;
+  }
+}
+    
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
