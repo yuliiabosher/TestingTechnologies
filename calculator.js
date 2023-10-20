@@ -232,6 +232,9 @@ function equals() {
     // Then append a blank space and an equals sign to the screen
     document.getElementsByTagName("h2")[0].innerHTML += " =";
     // Otherwise just append a space and an equals sign to the screen
+  } else if (document.getElementsByTagName("h2")[0].innerHTML == "-") {
+    document.getElementsByTagName("h2")[0].innerHTML = "0";
+    document.getElementsByTagName("h2")[1].innerHTML = null;
   } else {
     if (
       document.getElementsByTagName("h2")[0].innerHTML[
